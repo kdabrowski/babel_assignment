@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+# The class updates the routes as called. Unfortunatell I did not come up with a more elegant solution to load the routes
+# while in run time.
 
 class MockedEndpointsService
   def self.update_all

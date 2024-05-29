@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# This class is commont for all the mocked endpoints, the newly created endpoints are being all led to this controller
 
 module Api
   module V1
