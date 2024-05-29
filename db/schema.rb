@@ -10,15 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_29_091138) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_29_113246) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "endpoints", force: :cascade do |t|
     t.string "path"
-    t.integer "verb"
+    t.string "verb"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["verb", "path"], name: "index_endpoints_on_verb_and_path", unique: true
   end
 
 end

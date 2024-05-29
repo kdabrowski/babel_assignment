@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :endpoint do
-    verb { 1 }
+    verb { 'POST' }
     path { '/MyString' }
   end
 end

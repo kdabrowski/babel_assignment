@@ -1,4 +1,4 @@
-class AddUniqueIndexToEndpoints < ActiveRecord::Migration[7.0]
+class AddIndexOnVerbPath < ActiveRecord::Migration[7.0]
   def change
     add_index :endpoints, [:verb, :path], unique: true
   end

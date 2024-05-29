@@ -23,7 +23,7 @@ RSpec.describe Endpoint, type: :model do
       endpoint = Endpoint.new(verb: 'SOMETHING', path: '/test')
       endpoint.valid?
 
-      epxect(endpoint.errors).to eq('')
+      expect(endpoint.errors.first.message).to eq('SOMETHING is not a valid verb')
     end
   end
 
@@ -53,12 +53,6 @@ RSpec.describe Endpoint, type: :model do
     context 'when verb is GET' do
       let(:endpoint) { FactoryBot.build(:endpoint, verb: 'GET') }
       it { is_expected.to eq(:get) }
-    end
-
-    context 'when verb is unknown' do
-      it 'reaises an error' do
-        expect { FactoryBot.create(:endpoint, verb: 'UNKNOWN') }.to raise_error(ArgumentError)
-      end
     end
   end
 

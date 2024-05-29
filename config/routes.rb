@@ -6,8 +6,13 @@ Rails.application.routes.draw do
       match '*unmatched', to: 'application#route_not_found', via: :all
 
       scope :mocked_endpoints do
-        Endpoint.all.each do |endpoint|
-          match endpoint.path, to: "mocked_endpoints##{endpoint.controller_action}", via: endpoint.converted_verb
+        begin
+          ActiveRecord::Base.connection.data_source_exists?(:endpoints)
+          Endpoint.all.each do |endpoint|
+            match endpoint.path, to: "mocked_endpoints##{endpoint.controller_action}", via: endpoint.converted_verb
+          end
+        rescue ActiveRecord::NoDatabaseError
+          return nil
         end
       end
     end

@@ -1,6 +1,6 @@
 class Endpoint < ApplicationRecord
   validates :verb, :path, presence: true
-  validates :verb, presence: true, inclusion: { in: %w(GET POST PUT DELETE), message: "%{value} is not a valid verb" }
+  validates :verb, presence: true, inclusion: { in: %w(GET POST PUT DELETE UPDATE PATCH), message: "%{value} is not a valid verb" }
   validates_uniqueness_of :path, scope: :verb, case_insensitive: false
   validates :path, format: {
     with: /\A\/(?:[a-zA-Z0-9_\-]+\/)*[a-zA-Z0-9_\-]+\z/,
