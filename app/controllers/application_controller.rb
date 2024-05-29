@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::API
   include ActionController::Serialization
 
@@ -7,7 +9,7 @@ class ApplicationController < ActionController::API
     render json: {
       errors: [
         {
-          code: "not_found",
+          code: 'not_found',
           detail: "Requested page `#{request.path}` does not exist"
         }
       ]
@@ -18,8 +20,8 @@ class ApplicationController < ActionController::API
     render json: {
       errors: [
         {
-          code: "not_found",
-          detail: "Resource not found"
+          code: 'not_found',
+          detail: 'Resource not found'
         }
       ]
     }, status: :not_found

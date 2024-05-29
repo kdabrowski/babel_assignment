@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MockedEndpointsService
   def self.update_all
     Rails.application.routes_reloader.reload!
@@ -5,7 +7,7 @@ class MockedEndpointsService
     Rails.application.routes.draw do
       namespace :api do
         namespace :v1 do
-          resources :endpoints, only: [:index, :show, :create, :update, :destroy]
+          resources :endpoints, only: %i[index show create update destroy]
 
           scope :mocked_endpoints do
             Endpoint.all.each do |endpoint|

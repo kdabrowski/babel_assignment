@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Endpoints < ActiveRecord::Migration[7.0]
- def up
+  def up
     create_table :endpoints do |t|
       t.string :path
       t.string :verb

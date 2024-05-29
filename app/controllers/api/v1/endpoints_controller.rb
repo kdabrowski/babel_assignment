@@ -5,7 +5,7 @@ module Api
     class EndpointsController < ApplicationController
       rescue_from ActionController::RoutingError, with: :route_not_found
       before_action :fetch_endpoint, only: %i[show update destroy]
-      after_action :update_endpoints, only: [:create, :update, :destroy]
+      after_action :update_endpoints, only: %i[create update destroy]
 
       def index
         endpoints = Endpoint.all

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Endpoints API', type: :request do
@@ -9,8 +11,8 @@ RSpec.describe 'Endpoints API', type: :request do
       before { get '/api/v1/endpoints' }
 
       it 'returns all endpoints' do
-        expect(json["endpoints"]).not_to be_empty
-        expect(json["endpoints"].size).to eq(2)
+        expect(json['endpoints']).not_to be_empty
+        expect(json['endpoints'].size).to eq(2)
       end
     end
 
@@ -18,7 +20,7 @@ RSpec.describe 'Endpoints API', type: :request do
       before { get '/api/v1/endpoints' }
 
       it 'returns and empty array' do
-        expect(json["endpoints"]).to eq([])
+        expect(json['endpoints']).to eq([])
       end
     end
   end
@@ -37,14 +39,14 @@ RSpec.describe 'Endpoints API', type: :request do
     end
 
     context 'when the id is not correct' do
-      before { get "/api/v1/endpoints/12345" }
+      before { get '/api/v1/endpoints/12345' }
 
       it 'returns an error message' do
         expect(json['errors']).to eq(
           [
             {
-              "code" => "not_found",
-              "detail"=>"Resource not found"
+              'code' => 'not_found',
+              'detail' => 'Resource not found'
             }
           ]
         )
@@ -64,7 +66,7 @@ RSpec.describe 'Endpoints API', type: :request do
     end
 
     context 'when the id is not correct' do
-      before { patch "/api/v1/endpoints/12345" }
+      before { patch '/api/v1/endpoints/12345' }
 
       it 'returns an error message' do
         expect(json['errors']).to eq(
@@ -117,7 +119,7 @@ RSpec.describe 'Endpoints API', type: :request do
       it 'creates a new endpoint' do
         expect(Endpoint.count).to eq(1)
         expect(response).to have_http_status(201)
-        expect(json['message']).to eq("Endpoint created successfully")
+        expect(json['message']).to eq('Endpoint created successfully')
       end
 
       it 'pings the new endpoint' do
@@ -168,8 +170,8 @@ RSpec.describe 'Endpoints API', type: :request do
         expect(json['errors']).to eq(
           [
             {
-              "code" => "not_found",
-              "detail" => "Requested page `/api/v1/noednpoint` does not exist"
+              'code' => 'not_found',
+              'detail' => 'Requested page `/api/v1/noednpoint` does not exist'
             }
           ]
         )
@@ -180,7 +182,7 @@ RSpec.describe 'Endpoints API', type: :request do
       it 'returns an error' do
         post '/api/v1/endpoints', params: { endpoint: valid_attributes }
 
-        expect(json['errors']).to eq("path" => ["has already been taken"])
+        expect(json['errors']).to eq('path' => ['has already been taken'])
       end
     end
   end
